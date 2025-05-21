@@ -1,5 +1,6 @@
 'use client'
 import {ReactNode, useEffect, useState} from "react";
+
 import ReactDOM from "react-dom";
 interface Props {
     isOpen: boolean;
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export default function Modal({isOpen, onClose, children}: Props) {
+
     const CloseIcon = ({ className }: { className?: string }) => (
         <svg
             width="24"

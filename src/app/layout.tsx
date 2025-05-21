@@ -1,5 +1,6 @@
 import { Header } from '../widgets/header/header'
 import "./globals.css";
+import ReduxProvider from './provaider';
 
 
 export default function RootLayout({
@@ -10,9 +11,12 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body>
+        <ReduxProvider>
         <Header />
         {children}
+        </ReduxProvider>
         </body>
+
         </html>
     );
 }

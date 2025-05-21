@@ -1,23 +1,26 @@
 'use client'
 import { useState } from "react";
 import  Modal  from '../../shared/ui/modal/modal'
+import { useDispatch, useSelector } from 'react-redux'
+import { open, close } from '../../store/modalSlice'
+import { RootState, AppDispatch } from '../../store/store'
 
 
 export const Header = () => {
 
-    const [isModalOpen, setModalOpen] = useState(false);
-
+    const isOpen = useSelector((state: RootState) => state.modal.isOpen);
+    const dispatch = useDispatch<AppDispatch>();
 
     return (
         <div className="p-10 flex justify-center items-center h-screen" >
-            <button onClick={()=>setModalOpen(true)} className="bg-blue-600  hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-1000">
+            <button onClick={() => dispatch(open())} className="bg-blue-600  hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-1000">
                 Registration
             </button>
 
 
-            <Modal isOpen={isModalOpen} onClose={()=>setModalOpen(false)}>
+            <Modal isOpen={isOpen} onClose={() => dispatch(close())}>
                 <p>Modal !!</p>
-                <button onClick={()=>setModalOpen(false)} className="bg-blue-600  hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+                <button onClick={() => dispatch(close())} className="bg-blue-600  hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
                     Close Modal
                 </button>
             </Modal>

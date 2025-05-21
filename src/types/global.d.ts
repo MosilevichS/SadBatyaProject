@@ -3,3 +3,6 @@ declare module '*.svg' {
     const content: React.FC<React.SVGProps<SVGSVGElement>>;
     export default content;
 }
+declare module '@reduxjs/toolkit' {
+    export * from '@reduxjs/toolkit/dist/index';
+}
