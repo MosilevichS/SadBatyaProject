@@ -4,7 +4,7 @@ import  Modal  from '../../shared/ui/modal/modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { open, close } from '../../store/modalSlice'
 import { RootState, AppDispatch } from '../../store/store'
-
+import Form from '../../shared/ui/form/form'
 
 export const Header = () => {
 
@@ -19,10 +19,10 @@ export const Header = () => {
 
 
             <Modal isOpen={isOpen} onClose={() => dispatch(close())}>
-                <p>Modal !!</p>
-                <button onClick={() => dispatch(close())} className="bg-blue-600  hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
-                    Close Modal
-                </button>
+                <Form />
+                {/*<button onClick={() => dispatch(close())} className="bg-blue-600  hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">*/}
+                {/*    Close Modal*/}
+                {/*</button>*/}
             </Modal>
 
         </div>
