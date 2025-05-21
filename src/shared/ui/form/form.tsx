@@ -17,6 +17,7 @@ export default function Form({children, className}: IForm) {
         email: '',
         phone: ''
     })
+    const disableButton = (formData.name === '' || formData.email === '' || formData.phone === '')
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target
         setFormData(prev => ({...prev, [name]: value}))
@@ -58,11 +59,13 @@ export default function Form({children, className}: IForm) {
                 />
 
                 <button
+                    disabled = {(formData.name === '' || formData.email === '' || formData.phone ==='' )}
                     type="submit"
                     className="transform rounded-lg bg-blue-600 text-white p-3 font-medium
                     hover:bg-blue-700 hover:scale-[1.02]
                     active:scale-95
-                    transition-all duration-200"
+                    transition-all duration-200
+                    disabled:bg-gray-400 disabled:cursor-not-allowed disabled:scale-100"
                 >
                     Submit
                 </button>
