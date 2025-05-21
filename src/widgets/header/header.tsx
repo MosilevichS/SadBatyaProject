@@ -9,9 +9,9 @@ export const Header = () => {
 
 
     return (
-        <div>
+        <div className="p-10 flex justify-center items-center h-screen" >
             <button onClick={()=>setModalOpen(true)} className="bg-blue-600  hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-1000">
-                Open Modal
+                Registration
             </button>
 
 
