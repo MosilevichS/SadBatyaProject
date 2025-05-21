@@ -1,78 +1,98 @@
-import {ChangeEvent, ReactNode, useState} from "react";
+import { ReactNode } from "react";
+import { useForm } from "react-hook-form";
 
 interface IForm {
-    className?: string,
-    children?: string | ReactNode
+    className?: string;
+    children?: ReactNode;
 }
 
-interface IFormData {
-    name: string,
-    email: string,
-    phone: string
-}
+type FormData = {
+    name: string;
+    email: string;
+    phone: string;
+};
 
-export default function Form({children, className}: IForm) {
-    const [formData, setFormData] = useState<IFormData>({
-        name: '',
-        email: '',
-        phone: ''
-    })
-    const disableButton = (formData.name === '' || formData.email === '' || formData.phone === '')
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target
-        setFormData(prev => ({...prev, [name]: value}))
-    }
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        alert(`Добро пожаловать, ${formData.name}!`);
-        setFormData({
-            name: '',
-            email: '',
-            phone: '',
-        });
-    }
+export default function Form({ children, className }: IForm) {
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors, isValid }
+    } = useForm<FormData>({ mode: "onChange" });
+
+    const onSubmit = (data: FormData) => {
+        alert(`Welcome, ${data.name}!`);
+        reset();
+    };
+
     return (
         <div className={className}>
-            <form onSubmit={handleSubmit} className="p-5 flex flex-col gap-4" >
-                <input className="mt-1 w-full border rounded p-2 "
-                       type='text'
-                       placeholder='Name'
-                       name='name'
-                       required={true}
-                       value={formData.name}
-                       onChange={handleChange}
-                />
-                <input className="mt-1 w-full border rounded p-2 "
-                       type='text'
-                       placeholder='Email'
-                       name='email'
-                       required={true}
-                       value={formData.email}
-                       onChange={handleChange}
-                />
-                <input className="mt-1 w-full border rounded p-2 "
-                       placeholder='Phone'
-                       name='phone'
-                       required={true}
-                       value={formData.phone}
-                       onChange={handleChange}
-                />
+            <form onSubmit={handleSubmit(onSubmit)} className="p-5 flex flex-col gap-4">
+                <div>
+                    <input
+                        className="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        {...register("name", {
+                            required: "Name is required",
+                            minLength: {
+                                value: 2,
+                                message: "Length should be more than 2 "
+                            }
+                        })}
+                        placeholder="Name"
+                    />
+                    {errors.name && (
+                        <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+                    )}
+                </div>
+
+                <div>
+                    <input
+                        className="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        type="email"
+                        {...register("email", {
+                            required: "Email is required",
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: "Wrong mail"
+                            }
+                        })}
+                        placeholder="Email"
+                    />
+                    {errors.email && (
+                        <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                    )}
+                </div>
+
+                <div>
+                    <input
+                        className="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        type="tel"
+                        {...register("phone", {
+                            required: "Phone is required",
+                            pattern: {
+                                value: /^[0-9+]{10,15}$/,
+                                message: "Digits only (10-15 digits)"
+                            }
+                        })}
+                        placeholder="Phone"
+                    />
+                    {errors.phone && (
+                        <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+                    )}
+                </div>
 
                 <button
-                    disabled = {(formData.name === '' || formData.email === '' || formData.phone ==='' )}
                     type="submit"
-                    className="transform rounded-lg bg-blue-600 text-white p-3 font-medium
-                    hover:bg-blue-700 hover:scale-[1.02]
-                    active:scale-95
-                    transition-all duration-200
-                    disabled:bg-gray-400 disabled:cursor-not-allowed disabled:scale-100"
+                    disabled={!isValid}
+                    className="rounded-lg bg-blue-600 text-white p-3 font-medium mt-4
+          hover:bg-blue-700 transition-colors duration-200
+          disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
                     Submit
                 </button>
-
 
                 {children}
             </form>
         </div>
     );
-};
+}
