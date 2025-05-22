@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { useForm } from "react-hook-form";
-
+import  Button  from '../button/button'
 interface IForm {
     className?: string;
     children?: ReactNode;
@@ -81,15 +81,7 @@ export default function Form({ children, className }: IForm) {
                     )}
                 </div>
 
-                <button
-                    type="submit"
-                    disabled={!isValid}
-                    className="rounded-lg bg-blue-600 text-white p-3 font-medium mt-4
-          hover:bg-blue-700 transition-colors duration-200
-          disabled:bg-gray-400 disabled:cursor-not-allowed"
-                >
-                    Submit
-                </button>
+                <Button state={isValid} />
 
                 {children}
             </form>
