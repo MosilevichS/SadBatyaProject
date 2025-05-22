@@ -41,7 +41,7 @@ export default function Modal({isOpen, onClose, children}: Props) {
 
 
     return ReactDOM.createPortal(
-        <div className="fixed rounded-lg inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed rounded-lg inset-0 z-50 flex items-center justify-center  bg-opacity-50">
             <div className={`
           bg-white p-6 rounded-lg  w-screen h-screen relative transform transition-all duration-500
           ${show ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}

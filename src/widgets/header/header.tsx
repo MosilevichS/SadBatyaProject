@@ -12,7 +12,9 @@ export const Header = () => {
     const dispatch = useDispatch<AppDispatch>();
 
     return (
-        <div className="p-10 flex justify-center items-center h-screen" >
+        <div className="p-10 flex
+        justify-center items-center bg-white
+        h-screen" >
             <button onClick={() => dispatch(open())} className="bg-blue-600  hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-1000">
                 Registration
             </button>
@@ -20,9 +22,6 @@ export const Header = () => {
 
             <Modal isOpen={isOpen} onClose={() => dispatch(close())}>
                 <Form />
-                {/*<button onClick={() => dispatch(close())} className="bg-blue-600  hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">*/}
-                {/*    Close Modal*/}
-                {/*</button>*/}
             </Modal>
 
         </div>
