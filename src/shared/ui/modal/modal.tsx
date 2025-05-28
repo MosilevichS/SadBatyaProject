@@ -1,5 +1,7 @@
 "use client";
 import { ReactNode, useEffect, useState } from "react";
+import closeIcon from './assets/close.svg'
+import Image from "next/image";
 
 import ReactDOM from "react-dom";
 interface Props {
@@ -9,7 +11,8 @@ interface Props {
 }
 
 export default function Modal({ isOpen, onClose, children }: Props) {
-  const CloseIcon = ({ className }: { className?: string }) => (
+  const
+      CloseIcon = ({ className }: { className?: string }) => (
     <svg
       width="24"
       height="24"
@@ -35,6 +38,7 @@ export default function Modal({ isOpen, onClose, children }: Props) {
     </svg>
   );
 
+
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -59,9 +63,10 @@ export default function Modal({ isOpen, onClose, children }: Props) {
       >
         <button
           onClick={onClose}
-          className="absolute flex items-center justify-center top-3 right-3 w-5 h-5 hoover: bg-gray "
+          className="absolute flex items-center justify-center top-3 right-3 w-5 h-5 hoover: bg-gray cursor-pointer  "
         >
-          <CloseIcon className="w-5 h-5" />
+           {/*/<CloseIcon className="w-5 h-5" />*/}
+          <Image width='24' height='24' src='/close.svg' alt=''/>
         </button>
         {children}
       </div>

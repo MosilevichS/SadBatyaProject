@@ -13,10 +13,12 @@ export const Header = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <div
+    <header
       className="p-10 flex
-        justify-center items-center bg-white
-        h-screen"
+        {/*justify-center */}
+        {/*/!*items-center*/}
+         bg-gray-500"
+
     >
       <DropDown />
       <button
@@ -29,6 +31,6 @@ export const Header = () => {
       <Modal isOpen={isOpen} onClose={() => dispatch(close())}>
         <Form />
       </Modal>
-    </div>
+    </header>
   );
 };

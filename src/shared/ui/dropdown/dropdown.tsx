@@ -12,13 +12,11 @@ export default function BackgroundDropdown() {
     { name: "Blue", className: "bg-blue-500" },
     { name: "Green", className: "bg-green-500" },
     { name: "Red", className: "bg-red-500" },
-  ];
+  ] as const;
 
   return (
     <div
-      className={
-        "min-h-screen flex items-center justify-center transition-all duration-300"
-      }
+      className="flex items-center justify-center transition-all duration-300"
     >
       <div className="relative inline-block text-left">
         <button
