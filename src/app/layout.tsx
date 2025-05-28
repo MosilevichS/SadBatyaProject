@@ -1,22 +1,20 @@
-import { Header } from '../widgets/header/header'
+import { Header } from "../widgets/header/header";
 import "./globals.css";
-import ReduxProvider from './provaider';
-
+import ReduxProvider from "./provaider";
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
-    children: React.ReactNode;
+  children,
+}: Readonly<{
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en">
-        <body>
+  return (
+    <html lang="en">
+      <body>
         <ReduxProvider>
-        <Header />
-        {children}
+          <Header />
+          {children}
         </ReduxProvider>
-        </body>
-
-        </html>
-    );
+      </body>
+    </html>
+  );
 }
