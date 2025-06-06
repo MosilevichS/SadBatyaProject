@@ -1,23 +1,21 @@
-"use client";
-import {setHeaderColor} from "@/store/headerColorSlice";
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+'use client';
+import {setHeaderColor} from '@/store/headerColorSlice'
+import React, {useState} from 'react'
+import {useDispatch} from 'react-redux'
 
 export default function SetBodyColor() {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
 
     const colors = [
-        {name: "White", className: "bg-white"},
-        {name: "Blue", className: "bg-blue-500"},
-        {name: "Green", className: "bg-green-500"},
-        {name: "Red", className: "bg-red-500"},
+        {name: 'White', className: 'bg-white'},
+        {name: 'Blue', className: 'bg-blue-500'},
+        {name: 'Green', className: 'bg-green-500'},
+        {name: 'Red', className: 'bg-red-500'},
     ] as const;
 
     return (
-        <div
-            className="flex items-center justify-center transition-all duration-300"
-        >
+        <div className="flex items-center justify-center transition-all duration-300">
             <div className="relative inline-block text-left">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
@@ -35,7 +33,7 @@ export default function SetBodyColor() {
                                     key={name}
                                     onClick={() => {
                                         dispatch(setHeaderColor(className));
-                                        setIsOpen(false);
+                                        setIsOpen(false)
                                     }}
                                     className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 >
@@ -47,5 +45,5 @@ export default function SetBodyColor() {
                 )}
             </div>
         </div>
-    );
+    )
 }
