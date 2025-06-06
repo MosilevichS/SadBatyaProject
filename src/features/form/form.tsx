@@ -22,7 +22,7 @@ export default function Form({children, className}: IForm) {
     } = useForm<FormData>({mode: "onChange"});
 
     const onSubmit = (data: FormData) => {
-        alert(`Welcome, ${data.name}!`);
+        alert(`Form is successful submitted, ${data.name}!`);
         reset();
     };
 
