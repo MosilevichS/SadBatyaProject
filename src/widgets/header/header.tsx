@@ -5,6 +5,7 @@ import {close, open} from "../../store/modalSlice";
 import {AppDispatch, RootState} from "../../store/store";
 import Form from "../../features/form/form";
 import DropDown from "../setBodyColor/setBodyColor";
+import clsx from 'clsx';
 
 export const Header = () => {
     const bgColor = useSelector((state) => state.header.bgColor);
@@ -13,10 +14,9 @@ export const Header = () => {
 
     return (
         <header
-            className="p-10 flex
-        {/*justify-center */}
-        {/*/!*items-center*/}
-         bg-gray-500"
+            className={clsx(
+  'p-10', 'flex', 'justify-between',
+      bgColor)}
 
         >
             <DropDown/>
