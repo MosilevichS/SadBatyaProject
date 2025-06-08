@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import type {MouseEvent, ReactNode} from "react";
 import {useForm} from "react-hook-form";
 import Button from "../../shared/ui/button/button";
 
@@ -21,7 +21,7 @@ export default function Form({children, className}: IForm) {
         formState: {errors, isValid},
     } = useForm<FormData>({mode: "onChange"});
 
-    const onSubmit = (data: FormData) => {
+    const onSubmit = (data: FormData, e: MouseEvent) => {
         alert(`Form is successful submitted, ${data.name}!`);
         reset();
     };
@@ -31,6 +31,7 @@ export default function Form({children, className}: IForm) {
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="p-5 flex flex-col gap-4"
+
             >
                 <div>
                     <input
