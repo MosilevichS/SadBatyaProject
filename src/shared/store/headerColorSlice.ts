@@ -1,22 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+type Colors = 'bg-white' | 'bg-blue-500' | 'bg-green-500' | 'bg-red-500'
+
 interface HeaderState {
-  bgColor: 'bg-white' | 'bg-blue-500' | 'bg-green-500' | 'bg-red-500'
+  color: Colors
 }
 
 const initialState: HeaderState = {
-  bgColor: 'bg-white',
+  color: 'bg-white'
 }
 
 const headerSlice = createSlice({
   name: 'header',
   initialState,
   reducers: {
-    setHeaderColor: (state, action: PayloadAction<HeaderState['bgColor']>) => {
-      state.bgColor = action.payload
+    setHeaderColor: (state, action: PayloadAction<Colors>) => {
+      state.color = action.payload
     },
   },
 })
 
 export const { setHeaderColor } = headerSlice.actions
-export default headerSlice.reducer
+export const { reducer: headerReducer } = headerSlice

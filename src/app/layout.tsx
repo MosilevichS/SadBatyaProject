@@ -1,6 +1,6 @@
 import { Header } from "../widgets/header/header";
 import "./globals.css";
-import ReduxProvider from "./provaider";
+import ReduxProvider from "./provider";
 
 export default function RootLayout({
   children,
