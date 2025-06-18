@@ -1,7 +1,6 @@
 'use client'
 import { MouseEvent, ReactNode, useEffect, useState } from 'react'
 import Image from 'next/image'
-
 import ReactDOM from 'react-dom'
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
   children: string | ReactNode
 }
 
-export const Modal = ({ isOpen, onClose, children }: Props) => {
+export default function Modal({ isOpen, onClose, children }: Props) {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
@@ -46,6 +45,6 @@ export const Modal = ({ isOpen, onClose, children }: Props) => {
         {children}
       </div>
     </div>,
-    document.body,
+    document.body
   )
 }
