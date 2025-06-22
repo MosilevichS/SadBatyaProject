@@ -7,7 +7,7 @@ interface HeaderState {
 }
 
 const initialState: HeaderState = {
-  color: 'bg-white'
+  color: 'bg-white',
 }
 
 const headerSlice = createSlice({

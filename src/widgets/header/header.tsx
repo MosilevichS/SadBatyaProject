@@ -13,6 +13,7 @@ export const Header = () => {
   const isOpen = useSelector((state: RootState) => state.modal.isOpen)
   const dispatch = useDispatch<AppDispatch>()
   const { theme, toggleTheme } = useTheme()
+
   return (
     <header className={twMerge('p-10', 'flex', 'justify-between', bgColor)}>
       <HeaderColorPicker />
