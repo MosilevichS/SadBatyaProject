@@ -1,4 +1,4 @@
-import { Header } from '../widgets/header/header'
+import { Header } from '../widgets/header/Header'
 import './globals.css'
 import ReduxProvider from './provider'
 import { ThemeProvider } from '@/shared/context/theme-context'

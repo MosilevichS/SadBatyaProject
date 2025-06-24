@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
-import Button from '../../shared/ui/button/button'
+import Button from '../../shared/ui/button/Button'
 
 interface IForm {
   className?: string
