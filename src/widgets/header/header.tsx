@@ -7,6 +7,9 @@ import Modal from '../../shared/ui/modal/modal'
 import { HeaderColorPicker } from '../HeaderColorPicker'
 import { twMerge } from 'tailwind-merge'
 import { useTheme } from '@/shared/context/theme-context'
+import moon from './assets/moon.png'
+import theSun from './assets/theSun.png'
+import Image from 'next/image'
 
 export const Header = () => {
   const bgColor = useSelector((state: RootState) => state.header.color)
@@ -27,7 +30,12 @@ export const Header = () => {
         onClick={() => toggleTheme()}
         className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
       >
-        {theme === 'dark' ? '🌞' : '🌙'}
+        <Image
+          src={theme === 'dark' ? moon : theSun}
+          alt={theme === 'dark' ? 'Moon' : 'Sun'}
+          width={34}
+          height={34}
+        />
       </button>
 
       <Modal isOpen={isOpen} onClose={() => dispatch(close())}>
