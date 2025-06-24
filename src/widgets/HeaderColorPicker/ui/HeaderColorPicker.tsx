@@ -3,17 +3,23 @@ import { setHeaderColor } from '@/shared/store/headerColorSlice'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { colors } from '../model/colors'
+import { useTheme } from '@/shared/context/theme-context'
 
 export const HeaderColorPicker = () => {
   const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false)
+  const { theme } = useTheme()
 
   return (
     <div className="flex items-center justify-center transition-all duration-300">
       <div className="relative inline-block text-left">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+          className={
+            theme === 'dark'
+              ? 'inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-300'
+              : 'inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-green-100 text-sm font-medium text-gray-700 hover:bg-green-300'
+          }
         >
           Choose a color
         </button>
