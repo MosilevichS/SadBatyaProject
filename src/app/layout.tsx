@@ -1,7 +1,8 @@
 import { Header } from '../widgets/header/header'
 import './globals.css'
 import ReduxProvider from './provider'
-import { ThemeProvider } from '@/shared/theme-context'
+import { ThemeProvider } from '@/shared/context/theme-context'
+import { ClientBody } from '@/shared/context/ClientBody'
 
 export default function RootLayout({
   children,
@@ -9,15 +10,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <ThemeProvider>
+    <html lang="en" suppressHydrationWarning>
+      <ThemeProvider>
+        <ClientBody>
           <ReduxProvider>
             <Header />
             {children}
           </ReduxProvider>
-        </ThemeProvider>
-      </body>
+        </ClientBody>
+      </ThemeProvider>
     </html>
   )
 }

@@ -6,7 +6,7 @@ import Form from '../../features/form/form'
 import Modal from '../../shared/ui/modal/modal'
 import { HeaderColorPicker } from '../HeaderColorPicker'
 import { twMerge } from 'tailwind-merge'
-import { useTheme } from '@/shared/theme-context'
+import { useTheme } from '@/shared/context/theme-context'
 
 export const Header = () => {
   const bgColor = useSelector((state: RootState) => state.header.color)
