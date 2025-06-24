@@ -2,7 +2,7 @@
 import { setHeaderColor } from '@/shared/store/headerColorSlice'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { colors } from '../model/colors'
+import { colors } from '@/shared/type/colorPicker'
 import { useTheme } from '@/shared/context/theme-context'
 
 export const HeaderColorPicker = () => {
