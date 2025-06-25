@@ -28,14 +28,16 @@ export const Header = () => {
       </button>
       <button
         onClick={() => toggleTheme()}
-        className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+        // className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
       >
-        <Image
-          src={theme === 'dark' ? moon : theSun}
-          alt={theme === 'dark' ? 'Moon' : 'Sun'}
-          width={34}
-          height={34}
-        />
+        <div className={twMerge('p-1.5 rounded-full', bgColor)}>
+          <Image
+            src={theme === 'dark' ? moon : theSun}
+            alt={theme === 'dark' ? 'Moon' : 'Sun'}
+            width={44}
+            height={44}
+          />
+        </div>
       </button>
 
       <Modal isOpen={isOpen} onClose={() => dispatch(close())}>
