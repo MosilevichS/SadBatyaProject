@@ -3,21 +3,26 @@ interface IButton {
   state: boolean
   className?: string
   children?: string
+  type?: 'button' | 'submit' | 'reset'
+  onClick?: () => void
 }
 export default function Button({
   state,
   className,
-  children = 'Submit',
+  children,
+  type,
+  onClick,
 }: IButton) {
   return (
     <button
-      type="submit"
+      type={type}
       disabled={!state}
+      onClick={onClick}
       className={twMerge(
         'rounded-lg bg-blue-600 text-white p-3 font-medium mt-4',
         'hover:bg-blue-700 transition-colors duration-200',
         'disabled:bg-gray-400 disabled:cursor-not-allowed',
-        className
+        className,
       )}
     >
       {children}

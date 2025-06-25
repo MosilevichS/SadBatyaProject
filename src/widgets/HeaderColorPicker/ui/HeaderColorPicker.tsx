@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { colors } from '@/shared/type/colorPicker'
 import { useTheme } from '@/shared/context/theme-context'
+import Button from '@/shared/ui/button/Button'
 
 export const HeaderColorPicker = () => {
   const dispatch = useDispatch()
@@ -13,16 +14,16 @@ export const HeaderColorPicker = () => {
   return (
     <div className="flex items-center justify-center transition-all duration-300">
       <div className="relative inline-block text-left">
-        <button
+        <Button
+          state={true}
           onClick={() => setIsOpen(!isOpen)}
           className={
             theme === 'dark'
               ? 'inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-300'
               : 'inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-green-100 text-sm font-medium text-gray-700 hover:bg-green-300'
           }
-        >
-          Choose a color
-        </button>
+          children="Choose a color"
+        />
 
         {isOpen && (
           <div className="absolute right-0 z-10 mt-2 w-44 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
