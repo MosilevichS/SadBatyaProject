@@ -11,6 +11,7 @@ import moon from './assets/moon.png'
 import theSun from './assets/theSun.png'
 import Image from 'next/image'
 import Button from '@/shared/ui/button/Button'
+import { ToggleButton } from '@/shared/ui/buttonSlaider/ButtonSlaider'
 
 export const Header = () => {
   const bgColor = useSelector((state: RootState) => state.header.color)
@@ -28,6 +29,7 @@ export const Header = () => {
         type="button"
         onClick={() => dispatch(open())}
       />
+      <ToggleButton />
       <button onClick={() => toggleTheme()}>
         <div className={twMerge('p-1.5 rounded-full', bgColor)}>
           <Image
