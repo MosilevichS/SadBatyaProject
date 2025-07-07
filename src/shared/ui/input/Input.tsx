@@ -1,5 +1,6 @@
 import { ErrorMessage } from '../error/ErrorMessage'
-import { FieldError, UseFormRegister } from 'react-hook-form'
+import { UseFormRegister } from 'react-hook-form'
+import { twMerge } from 'tailwind-merge'
 interface IInput {
   name: string
   label?: string
@@ -7,7 +8,7 @@ interface IInput {
   placeholder?: string
   className?: string
   register: UseFormRegister<any>
-  error?: FieldError
+  error?: string
 }
 
 export const Input = ({
@@ -19,7 +20,7 @@ export const Input = ({
   error,
 }: IInput) => {
   return (
-    <div className={`mb-4 h-[45px] ${className}`}>
+    <div className={twMerge('mb-4 h-[45px]', className)}>
       <input
         id={name}
         type={type}
@@ -27,7 +28,7 @@ export const Input = ({
         className="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         {...register(name)}
       />
-      <ErrorMessage error={error} />
+      {error && <ErrorMessage error={error} />}
     </div>
   )
 }

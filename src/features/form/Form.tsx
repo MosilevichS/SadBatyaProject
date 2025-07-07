@@ -31,7 +31,6 @@ export default function Form({ children, className }: IForm) {
     alert(`Form is successful submitted, ${data.name}!`)
     reset({} as FormData)
   }
-
   return (
     <div className={className}>
       <form
@@ -42,7 +41,7 @@ export default function Form({ children, className }: IForm) {
           name="name"
           placeholder="Name"
           register={register}
-          error={errors.name}
+          error={errors.name?.message}
         />
 
         <Input
@@ -50,7 +49,7 @@ export default function Form({ children, className }: IForm) {
           type="email"
           placeholder="Email"
           register={register}
-          error={errors.email}
+          error={errors.email?.message}
         />
 
         <Input
@@ -58,7 +57,7 @@ export default function Form({ children, className }: IForm) {
           type="tel"
           placeholder="Phone"
           register={register}
-          error={errors.phone}
+          error={errors.phone?.message}
         />
         <Button state={isValid && isSubmitting} children="Submit" />
 

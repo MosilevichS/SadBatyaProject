@@ -1,8 +1,9 @@
 import { twMerge } from 'tailwind-merge'
+import { ReactNode } from 'react'
 interface IButton {
   state: boolean
   className?: string
-  children?: string
+  children?: ReactNode
   type?: 'button' | 'submit' | 'reset'
   onClick?: () => void
 }
