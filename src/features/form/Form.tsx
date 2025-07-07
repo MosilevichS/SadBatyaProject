@@ -4,6 +4,7 @@ import Button from '../../shared/ui/button/Button'
 import { Input } from '@/shared/ui/input/Input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { validateForm } from '@/shared/validation/validateForm'
+import { ErrorMessage } from '@/shared/ui/error/ErrorMessage'
 
 interface IForm {
   className?: string
@@ -35,30 +36,29 @@ export default function Form({ children, className }: IForm) {
     <div className={className}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="p-5 flex flex-col gap-4"
+        className="p-5 flex flex-col gap-4 "
       >
-        <Input
-          name="name"
-          placeholder="Name"
-          register={register}
-          error={errors.name?.message}
-        />
+        <Input name="name" placeholder="Name" register={register} />
+        {errors.name?.message && <ErrorMessage error={errors.name?.message} />}
 
         <Input
           name="email"
           type="email"
           placeholder="Email"
           register={register}
-          error={errors.email?.message}
         />
-
+        {errors.email?.message && (
+          <ErrorMessage error={errors.email?.message} />
+        )}
         <Input
           name="phone"
           type="tel"
           placeholder="Phone"
           register={register}
-          error={errors.phone?.message}
         />
+        {errors.phone?.message && (
+          <ErrorMessage error={errors.phone?.message} />
+        )}
         <Button state={isValid && isSubmitting} children="Submit" />
 
         {children}

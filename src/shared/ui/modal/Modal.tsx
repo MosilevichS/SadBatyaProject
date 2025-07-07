@@ -32,7 +32,7 @@ export default function Modal({ isOpen, onClose, children }: Props) {
       <div
         onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}
         className={`
-        bg-white p-6 rounded-lg w-full max-w-[500px] h-90 relative transform transition-all duration-500
+        bg-white p-6 rounded-lg w-full max-w-[500px] max-h-[90vh]  relative transform transition-all duration-500
         ${show ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}
       `}
       >
@@ -45,6 +45,6 @@ export default function Modal({ isOpen, onClose, children }: Props) {
         {children}
       </div>
     </div>,
-    document.body
+    document.body,
   )
 }
