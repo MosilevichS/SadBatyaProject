@@ -8,6 +8,7 @@ interface IInput {
   placeholder?: string
   className?: string
   register: UseFormRegister<any>
+  error?: string
 }
 
 export const Input = ({
@@ -16,6 +17,7 @@ export const Input = ({
   placeholder,
   className = '',
   register,
+  error,
 }: IInput) => {
   return (
     <div className={twMerge('mb-4 h-[45px]', className)}>
@@ -26,6 +28,7 @@ export const Input = ({
         className="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         {...register(name)}
       />
+      {error && <ErrorMessage error={error} />}
     </div>
   )
 }
