@@ -1,10 +1,12 @@
 'use client'
 import { setHeaderColor } from '@/shared/store/headerColorSlice'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { colors } from '@/shared/type/colorPicker'
 import { useTheme } from '@/shared/context/theme-context'
 import Button from '@/shared/ui/button/Button'
+import { AppDispatch, RootState } from '@/shared/store/store'
+import { closeBurgerMenu } from '@/shared/store/burgerMenuSlice'
 
 export const HeaderColorPicker = () => {
   const dispatch = useDispatch()
@@ -16,7 +18,9 @@ export const HeaderColorPicker = () => {
       <div className="relative inline-block text-left">
         <Button
           state={true}
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            setIsOpen(!isOpen)
+          }}
           className={
             theme === 'dark'
               ? 'inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-300'
@@ -34,6 +38,7 @@ export const HeaderColorPicker = () => {
                   onClick={() => {
                     dispatch(setHeaderColor(color))
                     setIsOpen(false)
+                    dispatch(closeBurgerMenu())
                   }}
                   className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >

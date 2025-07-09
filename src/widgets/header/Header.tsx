@@ -7,17 +7,19 @@ import Modal from '../../shared/ui/modal/Modal'
 import { HeaderColorPicker } from '../HeaderColorPicker'
 import { twMerge } from 'tailwind-merge'
 import { useTheme } from '@/shared/context/theme-context'
-import moon from '../../../public/moon.png'
-import theSun from '../../../public/theSun.png'
 import Image from 'next/image'
 import Button from '@/shared/ui/button/Button'
 import { ToggleButton } from '@/shared/ui/buttonSlaider/ButtonSlaider'
 import { useBodyScrollLock } from '@/shared/hooks/useBodyScrollLock'
 import { useState } from 'react'
+import { closeBurgerMenu, openBurgerMenu } from '@/shared/store/burgerMenuSlice'
 
 export const Header = () => {
   const bgColor = useSelector((state: RootState) => state.header.color)
   const isOpen = useSelector((state: RootState) => state.modal.isOpen)
+  const isBurgerMenuOpen = useSelector(
+    (state: RootState) => state.burgerMenu.isBurgerMenuOpen,
+  )
   const dispatch = useDispatch<AppDispatch>()
   const { theme, toggleTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -27,8 +29,8 @@ export const Header = () => {
     <header className={twMerge('p-10', 'flex', 'justify-between', bgColor)}>
       <div className="flex items-center justify-between md:hidden ">
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="relative z-50 h-8 w-8 focus:outline-none"
+          onClick={() => dispatch(openBurgerMenu())}
+          className={`${!isBurgerMenuOpen ? 'flex' : 'hidden'} relative z-50 h-8 w-8 focus:outline-none`}
         >
           <Image
             src="burger-menu.svg"
@@ -55,15 +57,21 @@ export const Header = () => {
         className={twMerge(
           'fixed inset-0 z-40 bg-black/80 backdrop-blur-sm transition-all duration-300',
           'md:hidden',
-          menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible',
+          isBurgerMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible',
         )}
       >
+        <button
+          onClick={() => dispatch(closeBurgerMenu())}
+          className={`${!isBurgerMenuOpen ? 'hidden' : 'flex'} absolute right-4 top-4  z-50 h-8 w-8 justify-end focus:outline-none`}
+        >
+          <Image src="close.svg" alt={'burger menu'} width={44} height={44} />
+        </button>
         <nav
           className={twMerge(
-            'absolute right-0 top-0 h-full w-3/4 bg-white shadow-lg',
+            'absolute right-0 top-0 h-full w-full bg-white shadow-lg',
             'transition-transform duration-300 ease-in-out',
             'flex flex-col items-center justify-center gap-8',
-            menuOpen ? 'translate-x-0' : 'translate-x-full',
+            isBurgerMenuOpen ? 'translate-x-0' : 'translate-x-full',
           )}
         >
           {' '}
@@ -74,7 +82,7 @@ export const Header = () => {
               state={true}
               onClick={() => {
                 dispatch(open())
-                setMenuOpen(false)
+                dispatch(closeBurgerMenu())
               }}
             >
               Registration
