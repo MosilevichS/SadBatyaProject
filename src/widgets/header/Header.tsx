@@ -7,8 +7,8 @@ import Modal from '../../shared/ui/modal/Modal'
 import { HeaderColorPicker } from '../HeaderColorPicker'
 import { twMerge } from 'tailwind-merge'
 import { useTheme } from '@/shared/context/theme-context'
-import moon from './assets/moon.png'
-import theSun from './assets/theSun.png'
+import moon from '../../../public/moon.png'
+import theSun from '../../../public/theSun.png'
 import Image from 'next/image'
 import Button from '@/shared/ui/button/Button'
 import { ToggleButton } from '@/shared/ui/buttonSlaider/ButtonSlaider'
@@ -51,16 +51,6 @@ export const Header = () => {
         Registration
       </Button>
       <ToggleButton />
-      <button onClick={() => toggleTheme()}>
-        <div className={twMerge('p-1.5 rounded-full', bgColor)}>
-          <Image
-            src={theme === 'dark' ? moon : theSun}
-            alt={theme === 'dark' ? 'Moon' : 'Sun'}
-            width={44}
-            height={44}
-          />
-        </div>
-      </button>
       <div
         className={twMerge(
           'fixed inset-0 z-40 bg-black/80 backdrop-blur-sm transition-all duration-300',
