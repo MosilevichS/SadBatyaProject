@@ -3,7 +3,7 @@
 import { close, open } from '@/shared/store/modalSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@/shared/store/store'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import Modal from '@/shared/ui/modal/Modal'
 import { string } from 'zod'
 

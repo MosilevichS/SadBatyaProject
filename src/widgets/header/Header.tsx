@@ -12,7 +12,7 @@ import Button from '@/shared/ui/button/Button'
 import { ToggleButton } from '@/shared/ui/buttonSlaider/ButtonSlaider'
 import { useBodyScrollLock } from '@/shared/hooks/useBodyScrollLock'
 import { useState } from 'react'
-import { closeBurgerMenu, openBurgerMenu } from '@/shared/store/burgerMenuSlice'
+import { BurgerMenu } from '@/shared/store/burgerMenuSlice'
 
 export const Header = () => {
   const bgColor = useSelector((state: RootState) => state.header.color)
@@ -29,7 +29,7 @@ export const Header = () => {
     <header className={twMerge('p-10', 'flex', 'justify-between', bgColor)}>
       <div className="flex items-center justify-between md:hidden ">
         <button
-          onClick={() => dispatch(openBurgerMenu())}
+          onClick={() => dispatch(BurgerMenu())}
           className={`${!isBurgerMenuOpen ? 'flex' : 'hidden'} relative z-50 h-8 w-8 focus:outline-none`}
         >
           <Image
@@ -61,7 +61,7 @@ export const Header = () => {
         )}
       >
         <button
-          onClick={() => dispatch(closeBurgerMenu())}
+          onClick={() => dispatch(BurgerMenu())}
           className={`${!isBurgerMenuOpen ? 'hidden' : 'flex'} absolute right-4 top-4  z-50 h-8 w-8 justify-end focus:outline-none`}
         >
           <Image src="close.svg" alt={'burger menu'} width={44} height={44} />
@@ -82,7 +82,7 @@ export const Header = () => {
               state={true}
               onClick={() => {
                 dispatch(open())
-                dispatch(closeBurgerMenu())
+                dispatch(BurgerMenu())
               }}
             >
               Registration
