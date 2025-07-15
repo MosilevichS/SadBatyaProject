@@ -13,7 +13,7 @@ export const ToggleButton = () => {
         setActive(!active)
         toggleTheme()
       }}
-      className={`hidden md:flex relative  mt-6  h-9 w-20 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
+      className={`hidden md:flex relative mt-4  h-9  w-20 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
         active ? 'bg-blue-600' : 'bg-gray-200'
       }`}
     >

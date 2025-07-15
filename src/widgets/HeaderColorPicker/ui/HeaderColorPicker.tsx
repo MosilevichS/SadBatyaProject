@@ -7,6 +7,7 @@ import { useTheme } from '@/shared/context/theme-context'
 import Button from '@/shared/ui/button/Button'
 import { AppDispatch, RootState } from '@/shared/store/store'
 import { closeBurgerMenu } from '@/shared/store/burgerMenuSlice'
+import { twMerge } from 'tailwind-merge'
 
 export const HeaderColorPicker = () => {
   const dispatch = useDispatch()
@@ -21,11 +22,12 @@ export const HeaderColorPicker = () => {
           onClick={() => {
             setIsOpen(!isOpen)
           }}
-          className={
+          className={twMerge(
+            'text-sm font-medium text-gray-700 inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 ',
             theme === 'dark'
-              ? 'inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-300'
-              : 'inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-green-100 text-sm font-medium text-gray-700 hover:bg-green-300'
-          }
+              ? 'bg-gray-100  hover:bg-gray-300'
+              : ' bg-green-100  hover:bg-green-300',
+          )}
           children="Choose a color"
         />
 

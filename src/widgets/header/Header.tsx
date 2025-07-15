@@ -45,7 +45,7 @@ export const Header = () => {
       </div>
 
       <Button
-        className="hidden md:flex bg-blue-600  hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-1000"
+        className="hidden md:flex bg-blue-600 h-9 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded-lg shadow-md transition duration-1000"
         state={true}
         type="button"
         onClick={() => dispatch(open())}
@@ -78,7 +78,7 @@ export const Header = () => {
           <div>
             <HeaderColorPicker />
             <Button
-              className="text-center p-2 w-33 h-10"
+              className="text-center p-2 w-33 h-90"
               state={true}
               onClick={() => {
                 dispatch(open())

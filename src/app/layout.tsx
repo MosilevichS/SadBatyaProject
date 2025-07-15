@@ -15,6 +15,7 @@ export default function RootLayout({
         <ClientBody>
           <ReduxProvider>
             <Header />
+
             {children}
           </ReduxProvider>
         </ClientBody>
