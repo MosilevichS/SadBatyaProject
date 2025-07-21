@@ -1,15 +1,9 @@
 'use client'
 
-import { close, open } from '@/shared/store/modalSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '@/shared/store/store'
 import { ChangeEvent, useEffect, useState } from 'react'
 import Modal from '@/shared/ui/modal/Modal'
-import { string } from 'zod'
 
 const PageMain = () => {
-  const isOpen = useSelector((state: RootState) => state.modal.isOpen)
-  const dispatch = useDispatch<AppDispatch>()
   const [firstTime, setFirstTime] = useState<boolean>()
   const [name, setName] = useState<string>('')
   useEffect(() => {
@@ -18,7 +12,6 @@ const PageMain = () => {
       setTimeout(() => {
         localStorage.setItem('firstTime', 'true')
         setFirstTime(true)
-        dispatch(open())
       }, 1000)
     } else {
       setFirstTime(false)
@@ -31,14 +24,15 @@ const PageMain = () => {
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value)
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     localStorage.setItem('name', name)
+    setFirstTime(false)
   }
   return (
     <>
       {firstTime && (
-        <Modal isOpen={isOpen} onClose={() => dispatch(close())}>
+        <Modal isOpen={firstTime} onClose={() => setFirstTime(false)}>
           <form onSubmit={handleSubmit}>
             <input
               name="name"
@@ -49,7 +43,7 @@ const PageMain = () => {
           </form>
         </Modal>
       )}
-      {name.length > 0 && (
+      {name.length > 0 && firstTime === false && (
         <span className="flex justify-center">Privet {name}</span>
       )}
     </>
